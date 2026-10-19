@@ -14,7 +14,7 @@ Web para que los aspirantes de AIROS (Sociedad de Inteligencia Artificial y Rob�
 ## Desplegar
 
 1. Crea un Google Sheet **privado** (vacío).
-2. En el Sheet: *Extensiones > Apps Script*. Pega `apps-script/Code.gs`, guarda y ejecuta `setup()` (autoriza los permisos). Crea las tres pestañas con sus encabezados y carga las 18 horas.
+2. En el Sheet: *Extensiones > Apps Script*. Pega `apps-script/Code.gs`, guarda y ejecuta `setup()` (autoriza los permisos). Crea las tres pestañas con sus encabezados y carga las 18 horas. Después escribe el nombre de quien entrevista en la columna `entrevistador` de `Horarios` (no está en el código por privacidad).
 3. En *Configuración del proyecto > Propiedades del script* agrega `PANEL_KEY` con una clave larga y aleatoria. Solo vive ahí.
 4. *Implementar > Nueva implementación > Aplicación web*: ejecutar como **Yo**, acceso **Cualquier persona**. Copia la URL que termina en `/exec`.
 5. En `config.js` pega la URL en `API_URL` y cambia `DEMO_MODE` a `false`.
