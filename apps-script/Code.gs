@@ -34,15 +34,17 @@ var CONFIG = {
   MAX_PROPUESTAS_PENDIENTES: 3       // por WhatsApp
 };
 
-// Las 18 horas de la semana del 19 al 22 de octubre de 2026: [id, fecha, hora, entrevistador].
+// Las 18 horas de la semana del 19 al 22 de octubre de 2026: [id, fecha, hora].
+// El entrevistador NO va en el código (el repo es público): se escribe a mano en la
+// columna "entrevistador" de la pestaña Horarios del Sheet privado.
 var HORARIOS_INICIALES = [
-  ['h01', '2026-10-19', '17:00', 'Héctor'], ['h02', '2026-10-19', '17:20', 'Héctor'], ['h03', '2026-10-19', '17:40', 'Héctor'],
-  ['h04', '2026-10-19', '18:00', 'Carolina'], ['h05', '2026-10-19', '18:30', 'Carolina'],
-  ['h06', '2026-10-19', '20:00', 'Carolina'], ['h07', '2026-10-19', '20:30', 'Carolina'],
-  ['h08', '2026-10-20', '19:20', 'Héctor'], ['h09', '2026-10-20', '19:40', 'Héctor'], ['h10', '2026-10-20', '20:00', 'Héctor'],
-  ['h11', '2026-10-21', '20:00', 'Carolina'], ['h12', '2026-10-21', '20:30', 'Carolina'],
-  ['h13', '2026-10-22', '19:00', 'Héctor'], ['h14', '2026-10-22', '19:20', 'Héctor'], ['h15', '2026-10-22', '19:40', 'Héctor'],
-  ['h16', '2026-10-22', '18:00', 'Carolina'], ['h17', '2026-10-22', '18:30', 'Carolina'], ['h18', '2026-10-22', '20:00', 'Carolina']
+  ['h01', '2026-10-19', '17:00'], ['h02', '2026-10-19', '17:20'], ['h03', '2026-10-19', '17:40'],
+  ['h04', '2026-10-19', '18:00'], ['h05', '2026-10-19', '18:30'],
+  ['h06', '2026-10-19', '20:00'], ['h07', '2026-10-19', '20:30'],
+  ['h08', '2026-10-20', '19:20'], ['h09', '2026-10-20', '19:40'], ['h10', '2026-10-20', '20:00'],
+  ['h11', '2026-10-21', '20:00'], ['h12', '2026-10-21', '20:30'],
+  ['h13', '2026-10-22', '19:00'], ['h14', '2026-10-22', '19:20'], ['h15', '2026-10-22', '19:40'],
+  ['h16', '2026-10-22', '18:00'], ['h17', '2026-10-22', '18:30'], ['h18', '2026-10-22', '20:00']
 ];
 
 /* ======================= Inicialización (ejecutar una vez) ======================= */
@@ -65,7 +67,7 @@ function setup() {
 
   var horarios = ss.getSheetByName(CONFIG.HOJAS.HORARIOS);
   if (horarios.getLastRow() < 2) {
-    var filas = HORARIOS_INICIALES.map(function (f) { return f.concat(['libre']); });
+    var filas = HORARIOS_INICIALES.map(function (f) { return [f[0], f[1], f[2], '', 'libre']; });
     horarios.getRange(2, 1, filas.length, 5).setValues(filas);
   }
   horarios.getRange(2, 5, horarios.getMaxRows() - 1, 1).setDataValidation(
@@ -77,7 +79,7 @@ function setup() {
   if (!PropertiesService.getScriptProperties().getProperty('PANEL_KEY')) {
     Logger.log('FALTA la propiedad PANEL_KEY (Configuración del proyecto > Propiedades del script).');
   }
-  Logger.log('Listo. Pestañas creadas y ' + HORARIOS_INICIALES.length + ' horas cargadas.');
+  Logger.log('Listo. Pestañas creadas y ' + HORARIOS_INICIALES.length + ' horas cargadas. Completa la columna entrevistador en Horarios.');
 }
 
 /**
