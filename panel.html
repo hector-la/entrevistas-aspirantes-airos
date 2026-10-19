@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel de entrevistas | AIROS ESPOL</title>
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="theme-color" content="#0D1B2A">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" type="image/png" href="assets/airos-isotipo.png">
+  <link rel="preload" href="assets/fonts/montserrat-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/panel.css">
+</head>
+<body class="panel">
+  <div class="demo-aviso" id="demo-aviso" hidden>
+    Modo demostración: la clave del panel es <strong id="demo-clave"></strong> y los datos viven solo en este navegador.
+  </div>
+
+  <header class="cabecera">
+    <div class="contenedor cabecera__fila panel__barra">
+      <img class="cabecera__logo" src="assets/airos-wordmark.png" alt="AIROS" width="900" height="291">
+      <span class="panel__rotulo">Panel interno de entrevistas</span>
+    </div>
+  </header>
+
+  <main class="contenedor" id="principal">
+    <!-- Acceso -->
+    <section id="acceso" class="acceso" aria-labelledby="h-acceso">
+      <h1 id="h-acceso">Panel de entrevistas</h1>
+      <form id="form-acceso" class="formulario" novalidate>
+        <div class="campo">
+          <label for="clave">Clave del panel</label>
+          <input id="clave" name="clave" type="password" autocomplete="current-password" maxlength="100" aria-describedby="clave-error">
+          <p class="campo__error" id="clave-error" hidden></p>
+        </div>
+        <p class="error-form" id="acceso-error" role="alert" hidden></p>
+        <button type="submit" class="boton">Entrar</button>
+      </form>
+    </section>
+
+    <!-- Panel -->
+    <div id="contenido" hidden>
+      <div class="panel__titulo">
+        <h1>Entrevistas</h1>
+        <div class="panel__acciones">
+          <button type="button" class="boton boton--sec boton--chico" id="btn-actualizar">Actualizar</button>
+          <button type="button" class="boton boton--sec boton--chico" id="btn-csv">Exportar agenda (CSV)</button>
+          <button type="button" class="boton boton--sec boton--chico" id="btn-csv-prop">Exportar propuestas (CSV)</button>
+          <button type="button" class="boton boton--sec boton--chico" id="btn-salir">Salir</button>
+        </div>
+      </div>
+
+      <p class="aviso aviso--error" id="panel-error" role="alert" hidden></p>
+      <p class="aviso" id="panel-aviso" role="status" hidden></p>
+
+      <dl class="contadores" aria-label="Resumen">
+        <div class="contador-caja"><dt>Reservas</dt><dd id="n-reservas">0</dd></div>
+        <div class="contador-caja"><dt>Horas libres</dt><dd id="n-libres">0</dd></div>
+        <div class="contador-caja"><dt>Propuestas</dt><dd id="n-propuestas">0</dd></div>
+      </dl>
+
+      <section aria-labelledby="h-agenda" class="bloque-panel">
+        <div class="bloque-panel__cabeza">
+          <h2 id="h-agenda">Agenda</h2>
+          <div class="filtro" role="group" aria-label="Filtrar por entrevistador" id="filtro"></div>
+        </div>
+        <div id="agenda"></div>
+      </section>
+
+      <section aria-labelledby="h-propuestas" class="bloque-panel">
+        <h2 id="h-propuestas">Propuestas pendientes</h2>
+        <div id="propuestas"></div>
+      </section>
+    </div>
+  </main>
+
+  <dialog id="dlg-confirmar" aria-labelledby="dk-titulo">
+    <div class="dialogo__cuerpo">
+      <h2 id="dk-titulo"></h2>
+      <p id="dk-texto"></p>
+      <div class="dialogo__acciones">
+        <button type="button" class="boton boton--sec" id="dk-no"></button>
+        <button type="button" class="boton boton--peligro" id="dk-si"></button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/mock.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/panel.js"></script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Entrevistas de aspirantes | AIROS ESPOL</title>
+  <meta name="description" content="Reserva la hora de tu entrevista virtual para ingresar a AIROS, la Sociedad de Inteligencia Artificial y Robótica de ESPOL.">
+  <meta name="theme-color" content="#0D1B2A">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" type="image/png" href="assets/airos-isotipo.png">
+  <link rel="preload" href="assets/fonts/montserrat-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#principal">Saltar al contenido</a>
+
+  <div class="demo-aviso" id="demo-aviso" hidden>
+    Modo demostración: las reservas se guardan solo en este navegador.
+    <a href="panel.html">Abrir el panel</a>
+  </div>
+
+  <header class="cabecera">
+    <div class="contenedor cabecera__fila">
+      <img class="cabecera__logo" src="assets/airos-wordmark.png" alt="AIROS, Artificial Intelligence Robotics Society" width="900" height="291">
+    </div>
+  </header>
+
+  <main id="principal" class="contenedor disposicion">
+    <div class="lateral">
+    <section class="intro" aria-labelledby="titulo">
+      <h1 id="titulo" tabindex="-1">Reserva tu entrevista</h1>
+      <p class="intro__texto">Dura 20 minutos y es virtual. Después de reservar, te escribimos por WhatsApp con el enlace de la reunión.</p>
+      <p class="zona">Todas las horas son de Ecuador (Guayaquil).</p>
+    </section>
+
+    <nav class="pestanas" aria-label="Secciones">
+      <a class="pestana" href="#reservar" data-vista="agenda">Elegir hora</a>
+      <a class="pestana" href="#mi-reserva" data-vista="mi-reserva">Mi reserva</a>
+      <a class="pestana" href="#otra-hora" data-vista="propuesta">Ninguna me sirve</a>
+    </nav>
+    </div>
+
+    <div class="contenido">
+    <div id="aviso" class="aviso" role="status" aria-live="polite" hidden></div>
+
+    <!-- Vista 1: agenda -->
+    <section id="vista-agenda" class="vista" aria-labelledby="h-agenda">
+      <div class="vista__cabeza">
+        <h2 id="h-agenda">Horas disponibles</h2>
+        <p class="contador" id="contador" aria-live="polite"></p>
+        <button type="button" class="enlace" id="btn-actualizar">Actualizar</button>
+      </div>
+      <div id="agenda" class="agenda"></div>
+      <p class="pie-vista">¿Ninguna hora te sirve? <a href="#otra-hora">Propón otra</a>.</p>
+    </section>
+
+    <!-- Vista 2: mi reserva -->
+    <section id="vista-mi-reserva" class="vista" aria-labelledby="h-mi-reserva" hidden>
+      <h2 id="h-mi-reserva" tabindex="-1">Mi reserva</h2>
+      <form id="form-consulta" class="formulario" novalidate>
+        <p class="ayuda">Escribe los mismos datos que usaste al reservar para ver, cambiar o cancelar tu hora.</p>
+        <div class="campo">
+          <label for="c-whatsapp">WhatsApp</label>
+          <input id="c-whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="0991234567" aria-describedby="c-whatsapp-error">
+          <p class="campo__error" id="c-whatsapp-error" hidden></p>
+        </div>
+        <div class="campo">
+          <label for="c-nombres">Nombres</label>
+          <input id="c-nombres" name="nombres" type="text" autocomplete="given-name" maxlength="60" aria-describedby="c-nombres-error">
+          <p class="campo__error" id="c-nombres-error" hidden></p>
+        </div>
+        <p class="error-form" id="c-error" role="alert" hidden></p>
+        <button type="submit" class="boton">Buscar mi reserva</button>
+      </form>
+      <div id="mi-resultado" hidden></div>
+    </section>
+
+    <!-- Vista 3: propuesta de otro horario -->
+    <section id="vista-propuesta" class="vista" aria-labelledby="h-propuesta" hidden>
+      <h2 id="h-propuesta" tabindex="-1">Propón otro horario</h2>
+      <form id="form-propuesta" class="formulario" novalidate>
+        <p class="ayuda">Cuéntanos cuándo podrías y te escribimos por WhatsApp para coordinar. Esto no reserva una hora.</p>
+        <div class="campo__par">
+          <div class="campo">
+            <label for="p-nombres">Nombres</label>
+            <input id="p-nombres" name="nombres" type="text" autocomplete="given-name" maxlength="60" aria-describedby="p-nombres-error">
+            <p class="campo__error" id="p-nombres-error" hidden></p>
+          </div>
+          <div class="campo">
+            <label for="p-apellidos">Apellidos</label>
+            <input id="p-apellidos" name="apellidos" type="text" autocomplete="family-name" maxlength="60" aria-describedby="p-apellidos-error">
+            <p class="campo__error" id="p-apellidos-error" hidden></p>
+          </div>
+        </div>
+        <div class="campo">
+          <label for="p-whatsapp">WhatsApp</label>
+          <input id="p-whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="0991234567" aria-describedby="p-whatsapp-ayuda p-whatsapp-error">
+          <p class="campo__ayuda" id="p-whatsapp-ayuda">Ejemplo: 0991234567 o +593991234567</p>
+          <p class="campo__error" id="p-whatsapp-error" hidden></p>
+        </div>
+        <div class="campo">
+          <label for="p-propuesta">¿Qué día y hora podrías?</label>
+          <textarea id="p-propuesta" name="propuesta" rows="3" maxlength="300" aria-describedby="p-propuesta-ayuda p-propuesta-error"></textarea>
+          <p class="campo__ayuda" id="p-propuesta-ayuda">Ejemplo: martes 20, después de las 6:00 p. m.</p>
+          <p class="campo__error" id="p-propuesta-error" hidden></p>
+        </div>
+        <div class="trampa" aria-hidden="true">
+          <label for="p-sitio">No llenar este campo</label>
+          <input id="p-sitio" name="sitio_web" type="text" tabindex="-1" autocomplete="off">
+        </div>
+        <p class="error-form" id="p-error" role="alert" hidden></p>
+        <button type="submit" class="boton">Enviar propuesta</button>
+      </form>
+      <div id="propuesta-ok" class="exito" hidden>
+        <h3 tabindex="-1">Recibimos tu propuesta</h3>
+        <p>Te escribiremos por WhatsApp para coordinar una hora.</p>
+        <a class="boton boton--sec" href="#reservar">Volver a las horas</a>
+      </div>
+    </section>
+
+    <!-- Vista 4: confirmación -->
+    <section id="vista-confirmacion" class="vista" aria-labelledby="h-confirmacion" hidden>
+      <div class="exito exito--reserva">
+        <h2 id="h-confirmacion" tabindex="-1">Tu hora está reservada</h2>
+        <p class="exito__cuando" id="conf-cuando"></p>
+        <div class="codigo">
+          <span class="codigo__etiqueta">Tu código</span>
+          <strong class="codigo__valor" id="conf-codigo"></strong>
+          <button type="button" class="enlace" id="btn-copiar">Copiar código</button>
+        </div>
+        <p>Te escribiremos por WhatsApp con el enlace de la reunión antes de tu entrevista. Si no puedes asistir, cancela o cambia tu hora en «Mi reserva».</p>
+        <div class="acciones">
+          <a class="boton" href="#mi-reserva">Ver mi reserva</a>
+        </div>
+      </div>
+    </section>
+    </div>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">AIROS ESPOL · Sociedad de Inteligencia Artificial y Robótica</div>
+  </footer>
+
+  <!-- Diálogo: datos para reservar -->
+  <dialog id="dlg-reservar" aria-labelledby="dr-titulo">
+    <form id="form-reserva" class="dialogo__cuerpo" novalidate>
+      <h2 id="dr-titulo">Confirma tus datos</h2>
+      <p class="dialogo__cuando" id="dr-cuando"></p>
+      <div class="campo__par">
+        <div class="campo">
+          <label for="r-nombres">Nombres</label>
+          <input id="r-nombres" name="nombres" type="text" autocomplete="given-name" maxlength="60" aria-describedby="r-nombres-error">
+          <p class="campo__error" id="r-nombres-error" hidden></p>
+        </div>
+        <div class="campo">
+          <label for="r-apellidos">Apellidos</label>
+          <input id="r-apellidos" name="apellidos" type="text" autocomplete="family-name" maxlength="60" aria-describedby="r-apellidos-error">
+          <p class="campo__error" id="r-apellidos-error" hidden></p>
+        </div>
+      </div>
+      <div class="campo">
+        <label for="r-whatsapp">WhatsApp</label>
+        <input id="r-whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="0991234567" aria-describedby="r-whatsapp-ayuda r-whatsapp-error">
+        <p class="campo__ayuda" id="r-whatsapp-ayuda">Ejemplo: 0991234567 o +593991234567. Aquí te enviamos el enlace.</p>
+        <p class="campo__error" id="r-whatsapp-error" hidden></p>
+      </div>
+      <div class="trampa" aria-hidden="true">
+        <label for="r-sitio">No llenar este campo</label>
+        <input id="r-sitio" name="sitio_web" type="text" tabindex="-1" autocomplete="off">
+      </div>
+      <p class="error-form" id="r-error" role="alert" hidden></p>
+      <div class="dialogo__acciones">
+        <button type="button" class="boton boton--sec" data-cerrar>Cancelar</button>
+        <button type="submit" class="boton">Reservar esta hora</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Diálogo: elegir una hora nueva (cambio de reserva) -->
+  <dialog id="dlg-cambiar" aria-labelledby="dc-titulo">
+    <div class="dialogo__cuerpo">
+      <h2 id="dc-titulo">Elige tu nueva hora</h2>
+      <p class="ayuda">Tu hora actual se libera cuando confirmes el cambio.</p>
+      <div id="dc-agenda" class="agenda agenda--compacta"></div>
+      <div class="dialogo__acciones">
+        <button type="button" class="boton boton--sec" data-cerrar>Cerrar</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Diálogo genérico de confirmación -->
+  <dialog id="dlg-confirmar" aria-labelledby="dk-titulo">
+    <div class="dialogo__cuerpo">
+      <h2 id="dk-titulo"></h2>
+      <p id="dk-texto"></p>
+      <div class="dialogo__acciones">
+        <button type="button" class="boton boton--sec" id="dk-no"></button>
+        <button type="button" class="boton" id="dk-si"></button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/mock.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

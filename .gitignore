@@ -1,0 +1,20 @@
+# Sistema y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Dependencias y pruebas locales
+node_modules/
+test-results/
+playwright-report/
+capturas/
+
+# Nunca subir datos de aspirantes, claves ni exportaciones
+*.csv
+*.xlsx
+.env
+.env.*
+.clasp.json
+.clasprc.json
+claves.txt
