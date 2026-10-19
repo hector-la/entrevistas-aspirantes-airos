@@ -1,0 +1,65 @@
+/* Panel interno: vista densa de escritorio que se apila en el celular. */
+
+.panel__barra { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1.5rem; }
+.panel__rotulo { color: var(--celeste); font-size: .85rem; font-weight: 600; }
+.panel main { padding-top: 1rem; padding-bottom: 2rem; }
+.panel h1 { font: 700 clamp(1.4rem, 5vw, 1.9rem)/1.15 var(--titulos); margin: .5rem 0 1rem; }
+
+.acceso { max-width: 26rem; }
+
+.panel__titulo { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1.5rem; margin-bottom: 1rem; }
+.panel__titulo h1 { margin: 0; }
+.panel__acciones { display: flex; flex-wrap: wrap; gap: .5rem; }
+.boton--chico { min-height: 2.75rem; padding: .4rem 1rem; font-size: .85rem; }
+
+.contadores { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; margin: 0 0 2rem; }
+.contador-caja { background: var(--bloque); border-radius: var(--radio); padding: .9rem 1rem; display: flex; flex-direction: column-reverse; }
+.contador-caja dt { color: var(--celeste); font-size: .8rem; font-weight: 600; }
+.contador-caja dd { margin: 0; font: 700 clamp(1.6rem, 6vw, 2.25rem)/1.1 var(--titulos); color: var(--cielo); }
+
+.bloque-panel { margin-bottom: 2.5rem; }
+.bloque-panel h2 { font: 800 1.2rem/1.2 var(--fuente); margin: 0 0 1rem; }
+.bloque-panel__cabeza { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1rem; margin-bottom: 1rem; }
+.bloque-panel__cabeza h2 { margin: 0; }
+
+.filtro { display: inline-flex; border: 1.5px solid var(--linea); border-radius: 10px; overflow: hidden; }
+.filtro button { min-height: 2.75rem; padding: .3rem 1rem; background: transparent; border: 0; color: var(--celeste); font: 700 .85rem var(--fuente); cursor: pointer; }
+.filtro button + button { border-left: 1.5px solid var(--linea); }
+.filtro button[aria-pressed="true"] { background: var(--cielo); color: var(--fondo); }
+
+/* Agenda por día */
+.p-dia { margin-bottom: 1.75rem; }
+.p-dia__titulo { display: flex; align-items: baseline; gap: .75rem; margin: 0 0 .5rem; font-size: 1rem; font-weight: 800; }
+.p-dia__titulo span { color: var(--celeste); font-weight: 600; font-size: .85rem; }
+.p-lista { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--linea); }
+.p-fila {
+  display: grid; gap: .25rem .75rem; padding: .85rem 0; border-bottom: 1px solid var(--linea);
+  grid-template-columns: 5.5rem 1fr auto; align-items: center;
+  grid-template-areas: "hora quien accion" "ent wa wa";
+}
+.p-hora { grid-area: hora; font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.p-quien { grid-area: quien; min-width: 0; overflow-wrap: anywhere; }
+.p-quien small { display: block; color: var(--celeste); font-size: .8rem; font-weight: 500; }
+.p-libre { color: var(--celeste); font-style: normal; }
+.p-ent { grid-area: ent; font-size: .8rem; font-weight: 700; color: var(--celeste); }
+.p-wa { grid-area: wa; font-size: .9rem; }
+.p-accion { grid-area: accion; }
+.etiqueta { display: inline-block; font-size: .72rem; font-weight: 800; padding: .1rem .5rem; border-radius: 99px; margin-left: .4rem; vertical-align: middle; border: 1.5px solid currentColor; }
+.etiqueta--reservada { color: var(--ok); }
+.etiqueta--libre { color: var(--celeste); }
+.etiqueta--bloqueada { color: var(--error); }
+.p-fila .boton { min-height: 2.5rem; padding: .3rem .9rem; font-size: .8rem; }
+.p-fila--libre .p-quien { color: var(--celeste); }
+
+@media (min-width: 50rem) {
+  .p-fila { grid-template-columns: 6rem 8rem minmax(12rem, 1.6fr) 10rem 8rem; grid-template-areas: "hora ent quien wa accion"; }
+}
+
+/* Propuestas */
+.p-prop { padding: 1rem; background: var(--bloque); border-radius: var(--radio); margin-bottom: .6rem; display: grid; gap: .5rem; }
+.p-prop__texto { margin: 0; overflow-wrap: anywhere; }
+.p-prop__meta { color: var(--celeste); font-size: .85rem; }
+.p-prop .boton { justify-self: start; min-height: 2.5rem; padding: .3rem .9rem; font-size: .8rem; }
+.p-vacio { color: var(--celeste); }
+
+@media (max-width: 29.99rem) { .contadores { gap: .4rem; } .contador-caja { padding: .7rem .75rem; } }
