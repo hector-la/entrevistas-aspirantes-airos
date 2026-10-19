@@ -19,7 +19,7 @@
  *   propiedades del script (PANEL_KEY) y se valida en el servidor.
  */
 window.AIROS_CONFIG = {
-  API_URL: "PEGA_AQUI_LA_URL_DE_APPS_SCRIPT",
-  DEMO_MODE: true,
+  API_URL: "https://script.google.com/macros/s/AKfycbznpH8SUusyc4GlouTGMGfTld8sByRKBRKTa_Qb0mTryN9HqPRoRKt5020_69mTDYL8IQ/exec",
+  DEMO_MODE: false,
   DEMO_PANEL_KEY: "demo-airos"
 };
