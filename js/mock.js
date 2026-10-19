@@ -14,7 +14,7 @@ window.AIROS = window.AIROS || {};
   var RETARDO_MS = 250; // simula la latencia de red para ver los estados de carga
 
   // Las 18 horas de la semana del 19 al 22 de octubre de 2026 (id, fecha, hora, entrevistador).
-  var H = "Héctor", C = "Carolina";
+  var H = "Entrevistador A", C = "Entrevistador B"; // nombres ficticios: los reales viven solo en el Sheet
   var HORARIOS_INICIALES = [
     ["h01", "2026-10-19", "17:00", H], ["h02", "2026-10-19", "17:20", H], ["h03", "2026-10-19", "17:40", H],
     ["h04", "2026-10-19", "18:00", C], ["h05", "2026-10-19", "18:30", C],
